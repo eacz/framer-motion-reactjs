@@ -4,10 +4,29 @@ import { motion } from 'framer-motion';
 import { glowButton, liTransition, liWhileHover } from '../sharedAnimations';
 
 const Toppings = ({ addTopping, pizza }) => {
+    const containerVariants = {
+        hidden: {
+            x: '100vw',
+            opacity: 0,
+        },
+        visible: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                type: 'spring',
+                delay: 0.5,
+            },
+        },
+    };
+
     let toppings = ['mushrooms', 'peppers', 'onions', 'olives', 'extra cheese', 'tomatoes'];
 
     return (
-        <div className='toppings container'>
+        <motion.div
+            variants={containerVariants}
+            initial='hidden'
+            animate='visible'
+            className='toppings container'>
             <h3>Step 2: Choose Toppings</h3>
             <ul>
                 {toppings.map((topping) => {
@@ -27,7 +46,7 @@ const Toppings = ({ addTopping, pizza }) => {
             <Link to='/order'>
                 <motion.button whileHover={glowButton}>Order</motion.button>
             </Link>
-        </div>
+        </motion.div>
     );
 };
 
