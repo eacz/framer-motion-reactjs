@@ -16,6 +16,12 @@ const containerVariants = {
             delay: 0.5,
         },
     },
+    exit: {
+        x: '-100vw',
+        transition: {
+            ease: 'easeInOut',
+        },
+    },
 };
 
 const nextVariants = {
@@ -36,7 +42,9 @@ const Base = ({ addBase, pizza }) => {
             variants={containerVariants}
             initial='hidden'
             animate='visible'
-            className='base container'>
+            exit='exit'
+            className='base container'
+        >
             <h3>Step 1: Choose Your Base</h3>
             <ul>
                 {bases.map((base) => {
@@ -46,7 +54,8 @@ const Base = ({ addBase, pizza }) => {
                             whileHover={liWhileHover}
                             transition={liTransition}
                             key={base}
-                            onClick={() => addBase(base)}>
+                            onClick={() => addBase(base)}
+                        >
                             <span className={spanClass}>{base}</span>
                         </motion.li>
                     );
