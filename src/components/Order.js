@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 const containerVariants = {
     hidden: {
@@ -34,7 +35,17 @@ const childVariants = {
     },
 };
 
-const Order = ({ pizza }) => {
+const Order = ({ pizza, setShowModal }) => {
+    useEffect(() => {
+        setTimeout(() => {
+            setShowModal(true);
+        }, 5000);
+
+        return () => { 
+            setShowModal(false);
+        };
+    }, [setShowModal]);
+
     return (
         <motion.div
             variants={containerVariants}
